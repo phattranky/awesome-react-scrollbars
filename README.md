@@ -5,7 +5,8 @@ awesome-react-scrollbars
 [![npm version](https://img.shields.io/npm/v/react-custom-scrollbars.svg?style=flat-square)](https://www.npmjs.com/package/react-custom-scrollbars)
 [![npm downloads](https://img.shields.io/npm/dm/react-custom-scrollbars.svg?style=flat-square)](https://www.npmjs.com/package/react-custom-scrollbars)
 
-* Add fixOffsetHeight: number pass from property to fix bugs when content with dynamic height;
+* Add fixOffsetHeight: number pass from property to fix bugs when content with dynamic height
+* Add fixOffsetWidth: number pass from property to fix bugs when content with dynamic width
 * frictionless native browser scrolling
 * native scrollbars for mobile devices
 * [fully customizable](https://github.com/malte-wessel/react-custom-scrollbars/blob/master/docs/customization.md)

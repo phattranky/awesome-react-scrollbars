@@ -52,6 +52,7 @@ export default createClass({
         autoHideTimeout: PropTypes.number,
         autoHideDuration: PropTypes.number,
         fixOffsetHeight: PropTypes.number,
+        fixOffsetWidth: PropTypes.number,
         autoHeight: PropTypes.bool,
         autoHeightMin: PropTypes.oneOfType([
             PropTypes.number,
@@ -83,7 +84,8 @@ export default createClass({
             autoHeightMin: 0,
             autoHeightMax: 200,
             universal: false,
-            fixOffsetHeight: 0
+            fixOffsetHeight: 0,
+            fixOffsetWidth: 0
         };
     },
 
@@ -170,23 +172,23 @@ export default createClass({
     },
 
     getThumbHorizontalWidth() {
-        const { thumbSize, thumbMinSize, fixOffsetHeight } = this.props;
+        const { thumbSize, thumbMinSize, fixOffsetWidth } = this.props;
         const { view, trackHorizontal } = this.refs;
         const { scrollWidth, clientWidth } = view;
         const trackWidth = getInnerWidth(trackHorizontal);
         const width = clientWidth / scrollWidth * trackWidth;
-        if (trackWidth <= (width + fixOffsetHeight)) return 0;
+        if (trackWidth <= (width + fixOffsetWidth)) return 0;
         if (thumbSize) return thumbSize;
         return Math.max(width, thumbMinSize);
     },
 
     getThumbVerticalHeight() {
-        const { thumbSize, thumbMinSize } = this.props;
+        const { thumbSize, thumbMinSize, fixOffsetHeight } = this.props;
         const { view, trackVertical } = this.refs;
         const { scrollHeight, clientHeight } = view;
         const trackHeight = getInnerHeight(trackVertical);
         const height = clientHeight / scrollHeight * trackHeight;
-        if (trackHeight === height) return 0;
+        if (trackHeight <= (height + fixOffsetHeight)) return 0;
         if (thumbSize) return thumbSize;
         return Math.max(height, thumbMinSize);
     },
