@@ -51,6 +51,7 @@ export default createClass({
         autoHide: PropTypes.bool,
         autoHideTimeout: PropTypes.number,
         autoHideDuration: PropTypes.number,
+        fixOffsetHeight: PropTypes.number,
         autoHeight: PropTypes.bool,
         autoHeightMin: PropTypes.oneOfType([
             PropTypes.number,
@@ -82,6 +83,7 @@ export default createClass({
             autoHeightMin: 0,
             autoHeightMax: 200,
             universal: false,
+            fixOffsetHeight: 0
         };
     },
 
@@ -168,12 +170,12 @@ export default createClass({
     },
 
     getThumbHorizontalWidth() {
-        const { thumbSize, thumbMinSize } = this.props;
+        const { thumbSize, thumbMinSize, fixOffsetHeight } = this.props;
         const { view, trackHorizontal } = this.refs;
         const { scrollWidth, clientWidth } = view;
         const trackWidth = getInnerWidth(trackHorizontal);
         const width = clientWidth / scrollWidth * trackWidth;
-        if (trackWidth === width) return 0;
+        if (trackWidth <= (width + fixOffsetHeight)) return 0;
         if (thumbSize) return thumbSize;
         return Math.max(width, thumbMinSize);
     },
