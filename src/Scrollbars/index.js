@@ -540,6 +540,8 @@ export default createClass({
             autoHeightMax,
             style,
             children,
+            fixOffsetHeight,
+            fixOffsetWidth,
             ...props
         } = this.props;
         /* eslint-enable no-unused-vars */
